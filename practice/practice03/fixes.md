@@ -21,4 +21,4 @@
 ### Bug 5: Logical error in findMax
     - Issue: The if statement if(numbers[i] >= maxVal) could cause a bug as it is looking for both the values larger than maxValue
       and the value set as maxValue.
-    - Fix: Change if statement to if(numbers[i] > maxVal). This will check only for numbers larger than the current maxVal. 
+    - Fix: Change if statement to if(numbers[i] > maxVal). This will check only for numbers larger than the current maxVal.

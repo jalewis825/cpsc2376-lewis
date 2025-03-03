@@ -9,10 +9,10 @@ namespace My05feb2025test
 	TEST_CLASS(My05feb2025test)
 	{
 	public:
-		
+
 		TEST_METHOD(TestAdd1)
 		{
-			Assert::AreEqual(5, add(2,3));
+			Assert::AreEqual(5, add(2, 3));
 		}
 		TEST_METHOD(TestDouble1)
 		{

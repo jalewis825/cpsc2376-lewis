@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 
@@ -36,4 +35,3 @@ public:
         return maxVal;
     }
 };
-

@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -7,8 +6,8 @@
 
 const int size = 3;
 
-enum class Player {none, X, O};
-enum class Direction { top, bottom, left, right};
+enum class Player { none, X, O };
+enum class Direction { top, bottom, left, right };
 
 struct Cell {
 	bool top = false;
@@ -49,9 +48,9 @@ void makeBoard() {
 			std::cout << "." << (board[row][col].top ? "---" : "   ");
 		}
 		std::cout << "." << std::endl;
-		
+
 		//box owner & vertical lines
-		std::cout << row +1 << " ";
+		std::cout << row + 1 << " ";
 		for (int col = 0; col < size; col++) {
 			std::cout << (board[row][col].left ? "| " : "  "); //if left side is true display | other wise show nothing
 			if (board[row][col].owner == Player::X) {
@@ -75,7 +74,7 @@ void makeBoard() {
 
 	std::cout << "  ";
 	for (int col = 0; col < size; col++) {
-		std::cout << "." << (board[size-1][col].bottom ? "___" : "   ");
+		std::cout << "." << (board[size - 1][col].bottom ? "___" : "   ");
 	}
 	std::cout << "." << std::endl;
 	std::cout << std::endl;
@@ -84,30 +83,30 @@ void makeBoard() {
 //update board when player marks a side
 void makeMove(int row, int col, Direction direction) {
 	switch (direction) {
-		case Direction::top:
-			board[row][col].top = true;
-			if (row > 0) {
-				board[row - 1][col].bottom = true;
-			}
-			break;
-		case Direction::bottom:
-			board[row][col].bottom = true;
-			if (row < size - 1) {
-				board[row + 1][col].top = true;
-			} 
-			break;
-		case Direction::left:
-			board[row][col].left = true;
-			if (col > 0) {
-				board[row][col - 1].right = true;
-			}
-			break;
-		case Direction::right:
-			board[row][col].right = true;
-			if (col < size - 1) {
-				board[row][col + 1].left = true;
-			}
-			break;
+	case Direction::top:
+		board[row][col].top = true;
+		if (row > 0) {
+			board[row - 1][col].bottom = true;
+		}
+		break;
+	case Direction::bottom:
+		board[row][col].bottom = true;
+		if (row < size - 1) {
+			board[row + 1][col].top = true;
+		}
+		break;
+	case Direction::left:
+		board[row][col].left = true;
+		if (col > 0) {
+			board[row][col - 1].right = true;
+		}
+		break;
+	case Direction::right:
+		board[row][col].right = true;
+		if (col < size - 1) {
+			board[row][col + 1].left = true;
+		}
+		break;
 	}
 }
 
@@ -121,24 +120,24 @@ bool isMoveValid(int row, int col, Direction direction) {
 
 	//checks if side of the cell has already been claimed
 	switch (direction) {
-		case Direction::top: 
-			return !board[row][col].top;
-		case Direction::bottom:
-			return !board[row][col].bottom;
-		case Direction::left:
-			return !board[row][col].left;
-		case Direction::right:
-			return !board[row][col].right;
-		default:
-			return false;
+	case Direction::top:
+		return !board[row][col].top;
+	case Direction::bottom:
+		return !board[row][col].bottom;
+	case Direction::left:
+		return !board[row][col].left;
+	case Direction::right:
+		return !board[row][col].right;
+	default:
+		return false;
 	}
 }
 
 //checks for a complete box and assigns points to the player that has a complete box
 bool completeBox(int row, int col) {
-	if (board[row][col].top 
+	if (board[row][col].top
 		&& board[row][col].bottom
-		&& board[row][col].left 
+		&& board[row][col].left
 		&& board[row][col].right
 		&& board[row][col].owner == Player::none) {
 		board[row][col].owner = currentPlayer;
@@ -158,7 +157,7 @@ void checkAdjacentBoxes(int row, int col, Direction direction, bool& extraTurn) 
 		if (row > 0) {
 			extraTurn |= completeBox(row - 1, col);//top neighbor
 		}
-	} 
+	}
 	else if (direction == Direction::bottom) {
 		if (row < size - 1) {
 			extraTurn |= completeBox(row + 1, col);  // Bottom neighbor
@@ -171,7 +170,7 @@ void checkAdjacentBoxes(int row, int col, Direction direction, bool& extraTurn) 
 	}
 	else if (direction == Direction::right) {
 		if (col < size - 1) {
-			extraTurn |= completeBox(row , col + 1);  // Right neighbor
+			extraTurn |= completeBox(row, col + 1);  // Right neighbor
 		}
 	}
 }
@@ -192,7 +191,7 @@ void gamePlay() {
 	while (gameStatus()) {
 		makeBoard();
 		std::cout << "Player: " << (currentPlayer == Player::X ? 'X' : 'O') << "'s turn. Enter row, column, and direction (T/B/L/R): ";
-	
+
 		while (true) {
 			std::string userInput;
 			std::getline(std::cin, userInput);
@@ -204,10 +203,10 @@ void gamePlay() {
 
 			std::istringstream stream(userInput);
 			if (!(stream >> row >> col >> directionInput)) {
-				std::cout << "Invalid input format.Try again(row, column, direction) : "; 
+				std::cout << "Invalid input format.Try again(row, column, direction) : ";
 				continue;
 			}
-			
+
 			directionInput = std::toupper(directionInput);
 
 			if (std::cin.fail() || row < 1 || row > size || col < 1 || col > size ||
@@ -286,7 +285,7 @@ int main() {
 			currentPlayer = Player::X;
 			gamePlay();
 		}
-		else if (playAgain== 'N') {
+		else if (playAgain == 'N') {
 			std::cout << "Thanks for playing!" << std::endl;
 			return 0;
 		}
@@ -296,7 +295,7 @@ int main() {
 	}
 }
 
-/*AI: Used to help me get started with gamePlay(); I had printRules(), makeBoard(), a couple other functions, and the enums created, 
+/*AI: Used to help me get started with gamePlay(); I had printRules(), makeBoard(), a couple other functions, and the enums created,
 I just needed help with a jumping off point for game play. I was struggling with the user input part of game play. I also needed help with
 the checkAdjacentBoxes() function. It kept crashing when I would enter bottom as a direction and I couldn't
 figure out how to fix it.*/

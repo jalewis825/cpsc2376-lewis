@@ -79,3 +79,4 @@ int main() {
 /*AI: Utilized to help with conversion formulas.Also, used to help when fixing bugs.
 There was some organization issues I was facing with my if statements. Also, used it to
 help me with the cin.clear()/fail() syntax. */
+
