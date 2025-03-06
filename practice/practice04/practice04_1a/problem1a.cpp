@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 double convertTemp(double temp, char scale = 'F') {
     if (scale == 'F') {
@@ -65,12 +66,12 @@ int main() {
 
         if (userInput == 1) {
             result = convertTemp(temp, 'F');
-            std::cout << temp << "°C = " << result << "°F." << std::endl;
+            std::cout << temp << "ï¿½C = " << result << "ï¿½F." << std::endl;
 
         }
         else if (userInput == 2) {
             result = convertTemp(temp, 'C');
-            std::cout << temp << "°F = " << result << "°C." << std::endl;
+            std::cout << temp << "ï¿½F = " << result << "ï¿½C." << std::endl;
         }
     }
     return 0;
