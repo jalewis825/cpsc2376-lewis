@@ -8,6 +8,18 @@ int main () {
 
     std::cout << "Enter a list of integers (press 0 when done): " << std::endl;
 
+    while (true) {
+        int userNum;
+        std::cin >> userNum;
+
+        //stop when user enters zero without adding 0 to vector
+        if (userNum == 0) {
+            break;
+        }
+        values.push_back(userNum);
+    }
+
+    //prints values in the same order 
     if (values.empty()) {
         std::cout << "The vector is empty." << std::endl;
     }
@@ -19,7 +31,7 @@ int main () {
             }
             std::cout << *it;
         } 
-        std::cout << "}";
+        std::cout << "}" << std::endl;
     }
 
     //for_each that squares each vector element
