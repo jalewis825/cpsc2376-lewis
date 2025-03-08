@@ -1,7 +1,3 @@
-/* Write a program that takes user input for a list of integers, stores them in a std::vector,
-and prints them in the same order using iterators. Then, find and print the sum of only the
-even numbers using an iterator-based loop.*/
-
 #include <iostream>
 #include <iterator> 
 #include <vector>
@@ -9,7 +5,7 @@ even numbers using an iterator-based loop.*/
 int main () {
     std::vector<int> values; //empty vector for user to enter ints into
 
-    std::cout << "Enter the number(s) you would like to add to the vector(Press 0 when done): " << std::endl;
+    std::cout << "Enter a list of integers (press 0 when done): " << std::endl;
 
     while (true) {
         int userNum;
