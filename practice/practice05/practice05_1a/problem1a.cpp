@@ -3,26 +3,13 @@ and prints them in the same order using iterators. Then, find and print the sum 
 even numbers using an iterator-based loop.*/
 
 #include <iostream>
+#include <iterator> 
 #include <vector>
-
-void printVector(std::vector<int>& values) {
-    if (values.empty()) {
-        std::cout << "The vector is empty." << std::endl;
-    }
-    else {
-        std::cout << "Vector contents: { ";
-        for (int num : values) {
-            std::cout << num << " ";
-        }
-        std::cout << "}";
-        std::cout << std::endl;
-    }
-}
 
 int main () {
     std::vector<int> values; //empty vector for user to enter ints into
 
-    std::cout << "Enter the number(s) you would like to add to the vector(Press 0 when done): ";
+    std::cout << "Enter the number(s) you would like to add to the vector(Press 0 when done): " << std::endl;
 
     while (true) {
         int userNum;
@@ -35,11 +22,33 @@ int main () {
         values.push_back(userNum);
     }
 
-    printVector(values);
+    //prints values in the same order 
+    if (values.empty()) {
+        std::cout << "The vector is empty." << std::endl;
+    }
+    else {
+        std::cout << "Vector contents: {";
+        for (std::vector<int>::iterator it = values.begin(); it != values.end(); it++) {
+            if (it != values.begin()) {
+                std::cout << ", ";
+            }
+            std::cout << *it;
+        } 
+        std::cout << "}";
+    }
 
-    //for (int it = values.begin(); it != nums.end(); ++it) {
-        //std::cout << *it << " ";
-    //}
+    //checks for even numbers and then adds them 
+    int sum = 0;
+    for (std::vector<int>::iterator it = values.begin(); it!= values.end(); it++){
+        if (*it % 2 == 0){
+            sum += *it;
+        }
+    }
+
+    std::cout << std::endl;
+    std::cout << "Sum of even numbers in the vector: " << sum << std::endl;
 
     return 0;
 }
+
+//AI: I was facing syntax issues with the iterators. I used AI to help me with that
