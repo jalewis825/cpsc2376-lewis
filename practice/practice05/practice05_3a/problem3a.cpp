@@ -3,7 +3,7 @@
 #include <numeric>
 #include <algorithm>
 
-int main () {
+int main() {
     std::vector<int> values; //empty vector for user to enter ints into
 
     std::cout << "Enter a list of integers (press 0 when done): " << std::endl;
@@ -30,18 +30,18 @@ int main () {
                 std::cout << ", ";
             }
             std::cout << *it;
-        } 
+        }
         std::cout << "}" << std::endl;
     }
 
     //for_each that squares each vector element
-    std::cout << "Each integer squared: "; 
+    std::cout << "Each integer squared: ";
     std::for_each(values.begin(), values.end(), [](int num) { std::cout << num * num << " "; });
-    std::cout << std::endl; 
-    
+    std::cout << std::endl;
+
     //lambda function using accumulate to sum the squared ints
-    int squareSum = std::accumulate (values.begin(), values.end(), 0,
-        [](int sum, int num){ return sum + (num * num); });
+    int squareSum = std::accumulate(values.begin(), values.end(), 0,
+        [](int sum, int num) { return sum + (num * num); });
     std::cout << "Sum of squared integers: " << squareSum << std::endl;
 
     return 0;

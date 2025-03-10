@@ -2,7 +2,7 @@
 #include <iterator> 
 #include <vector>
 
-int main () {
+int main() {
     std::vector<int> values; //empty vector for user to enter ints into
 
     std::cout << "Enter a list of integers (press 0 when done): " << std::endl;
@@ -29,14 +29,14 @@ int main () {
                 std::cout << ", ";
             }
             std::cout << *it;
-        } 
+        }
         std::cout << "}";
     }
 
     //checks for even numbers and then adds them 
     int sum = 0;
-    for (std::vector<int>::iterator it = values.begin(); it!= values.end(); it++){
-        if (*it % 2 == 0){
+    for (std::vector<int>::iterator it = values.begin(); it != values.end(); it++) {
+        if (*it % 2 == 0) {
             sum += *it;
         }
     }
