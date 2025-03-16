@@ -31,22 +31,22 @@ int main() {
                     
                     break;
                 case 2:
-                    addFraction();
+                    
                     break;
                 case 3:
-                    subtractFraction();
+                    
                     break;
                 case 4:
-                    multiplyFraction();
+                    
                     break;
                 case 5:
-                    divideFraction();
+                    
                     break;
                 case 6:
-                    mixedFraction();
+                    
                     break;
                 case 7:
-                    clearFraction();
+                    
                     break;
                 case 0:
                     std::cout << "Exiting the program. Goodbye!" << std::endl;
