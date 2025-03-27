@@ -1,0 +1,7 @@
+Salaried 101 Chris 7500
+Hourly 102 Ashley 28 160
+Commission 103 Zach 1200 350 0.20
+Salaried 104 James 5000
+Hourly 105 LuAnn 22 176
+Salaried 106 Paige 10000
+Commission 107 Rebekah 1500 750 0.25
