@@ -11,7 +11,6 @@ private:
     std::string name;
     int id;
 public:
-    //Constructor
     Employee(std::string name, int id) : name(name), id(id) {}
     virtual double calculateSalary() const = 0;
     virtual void displayInfo() const {
