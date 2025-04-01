@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 
-
-
 class Game {
 public:
 	enum Player { NONE, X, O };
