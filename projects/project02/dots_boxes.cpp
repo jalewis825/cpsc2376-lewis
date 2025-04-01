@@ -4,7 +4,7 @@
 #include "dots_boxes.h"
 
 //Constructor intilizing game board, starting player, and resets score
-Game::Game() : currentPlayer(X), player1Score(0), player2Score(0) {
+Game::Game() : board(size, std::vector<Cell>(size)), currentPlayer(X), player1Score(0), player2Score(0) {
 	board = std::vector<std::vector<Cell>>(size, std::vector<Cell>(size));
 }
 
@@ -129,17 +129,9 @@ Game::Status Game::status() const {
 	int totalMoves = player1Score + player2Score;
 
 	if (totalMoves == totalBoxes) {
-		if (player1Score > player2Score) {
-			return Status::PLAYER_1_WINS;
-		}
-		else if (player2Score > player1Score) {
-			return Status::PLAYER_2_WINS;
-		}
-		else {
-			return Status::DRAW;
-		}
+		return (player1Score > player2Score) ? PLAYER_1_WINS :
+			(player2Score > player1Score) ? PLAYER_2_WINS : DRAW;
 	}
-
 	return Status::ONGOING; //not all boxes are claimed & games still ongoing
 }
 
@@ -165,10 +157,10 @@ std::ostream& operator<<(std::ostream& os, const Game& game) {
 		os << row + 1 << " ";
 		for (int col = 0; col < Game::size; col++) {
 			os << (game.board[row][col].left ? "| " : "  "); //if left side is true display | other wise show nothing
-			if (game.board[row][col].owner == Player::X) {
+			if (game.board[row][col].owner == Game::Player::X) {
 				os << "X ";
 			}
-			else if (game.board[row][col].owner == Player::O) {
+			else if (game.board[row][col].owner == Game::Player::O) {
 				os << "O ";
 			}
 			else {

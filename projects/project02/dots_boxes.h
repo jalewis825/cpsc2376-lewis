@@ -4,10 +4,11 @@
 #include <iostream>
 #include <vector>
 
-enum Player { NONE, X, O };
+
 
 class Game {
 public:
+	enum Player { NONE, X, O };
 	enum Direction { TOP, BOTTOM, LEFT, RIGHT };
 	enum Status { ONGOING, PLAYER_1_WINS, PLAYER_2_WINS, DRAW };
 
@@ -17,6 +18,7 @@ public:
 	void play(int row, int col, Direction direction);
 	Status status() const;
 	void reset();
+	Player getCurrentPlayer() const { return currentPlayer; }
 
 	friend std::ostream& operator<<(std::ostream& os, const Game& game);
 
