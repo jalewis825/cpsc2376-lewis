@@ -78,7 +78,7 @@ private:
 
 public:
 	Trapezoid(double b1, double b2, double h) : base1(b1), base2(b2), height(h) {}
-	
+
 	double getArea() const override {
 		return .5 * (base1 + base2) * height;
 	}
@@ -171,7 +171,7 @@ int main() {
 				std::cerr << "Error on line " << lineNumber << ": Invalid or missing trapezoid demension." << std::endl;
 				continue;
 			}
-			if (base1 <= 0 || base2 <=0 || height <= 0) {
+			if (base1 <= 0 || base2 <= 0 || height <= 0) {
 				std::cerr << "Error on line " << lineNumber << ": Trapezoid dimensions must be positive." << std::endl;
 				continue;
 			}
@@ -187,4 +187,3 @@ int main() {
 
 	return 0;
 }
-
