@@ -24,7 +24,7 @@ $$
 ```mermaid
 flowchart LR
 A((TEST))-->B(B)
-B-->C<ASDF]
+B-->C>ASDF]
 A-->C
 C-->A
 ```
