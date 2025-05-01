@@ -91,6 +91,7 @@ public:
     void listAvailableGames() const;
     void listCustomerGames(const std::string& customerName) const;
 }
+```
 
 ```mermaid
 ---
@@ -128,3 +129,4 @@ classDiagram
             +checkOutGame()
             +returnGame()
         }
+```
