@@ -8,11 +8,123 @@
 - Prevents checking out games with zero availability
 
 #### Nouns:
-- games
+- game
+    - std::string title
+    - int totalCopies
+    - int availableCopies
 - customer
+    - std::string name
+    - std::vector<std::string> checkedOutGames
 - gameInventory
+    - std::vector<Game> games
+    - std::vector<Customer> customers
 
 #### Verbs:
-- checkOutGame
+- addGame
+    - getGameTitle
+    - getTotalCopies
+- addCustomer
+    - getCustomerName
+- checkOutGame 
+    - removes 1 copy of the game from game inventory
+    - adds game to customer's checked-out list
 - returnGame
+    - returns game back to game inventory
+    - removes game from customer's checked-out list
 - listAvailableGames
+    - getGameTitle
+    - getAvailableCopies
+- listCheckedOutGames
+    - lists games checked out by a specific customer
+
+//Game.h
+class Game {
+private:
+    std::string title;
+    int totalCopies;
+    int availableCopies;
+
+public:
+    Game(const std::string& title, int totalCopies);
+
+    std::string getTitle() const;
+    int getTotalCopies () const;
+    int getAvailableCopies () const;
+
+    bool checkout();
+    void returnCopy();
+};
+
+//Customer.h
+class Customer {
+private:
+    std::string name;
+    std::vector<std::string> checkedOutGames;
+
+public:
+    Customer(const std::string& name);
+
+    std::string getCustomerName() const;
+    void checkOutGame(std::string& gameTitle);
+    bool returnGame(std::string& gameTitle);
+    const std::vector<std::string>& getCheckedOutGames() const;
+
+};
+
+//GameInventory.h
+class gameInventory {
+private:
+    std::vector<Game> games;
+    std::vector<Customer> customers;
+
+    Game* findGame(const std::string& title);
+    Customer* findCustomer(constd std::string& name);
+
+public:
+    void addGame(const std::string& title, int copies);
+    void addCustomer(const std::string& name);
+
+    bool checkoutGame(const std::string& customerName, const std::string& gameTitle);
+    bool returnGame(const std::string& customerName, const std::string& gameTitle);
+
+    void listAvailableGames() const;
+    void listCustomerGames(const std::string& customerName) const;
+}
+
+```mermaid
+---
+title: Game Inventory Management System
+---
+classDiagram
+    class Game {
+        - std::string title;
+        - int totalCopies;
+        - int availableCopies;
+        + Game(const std::string& title, int totalCopies);
+        + std::string getTitle() const;
+        + int getTotalCopies () const;
+        + int getAvailableCopies () const;
+        + bool checkout();
+        + void returnCopy();
+    }
+    class Customer {
+        - std::string name;
+        - std::vector<std::string> checkedOutGames;
+        + Customer(const std::string& name);
+        + std::string getCustomerName() const;
+        + void checkOutGame(std::string& gameTitle);
+        + bool returnGame(std::string& gameTitle);
+        + const std::vector<std::string>& getCheckedOutGames() const;
+    }
+    class gameInventory{
+        - std::vector<Game> games;
+        - std::vector<Customer> customers;
+        - Game* findGame(const std::string& title);
+        - Customer* findCustomer(constd std::string& name);
+        + void addGame(const std::string& title, int copies);
+        + void addCustomer(const std::string& name);
+        + bool checkoutGame(const std::string& customerName, const std::string& gameTitle);
+        + bool returnGame(const std::string& customerName, const std::string& gameTitle);
+        + void listAvailableGames() const;
+        + void listCustomerGames(const std::string& customerName) const;
+    }
