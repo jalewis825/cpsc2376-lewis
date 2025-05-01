@@ -83,6 +83,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "practice12", "..\practice\p
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mermaid_walkthru", "..\class_notes\mermaid_walkthru\mermaid_walkthru\mermaid_walkthru.vcxproj", "{12B17589-EB3D-44E1-9597-00D45C3A824C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "practice11", "..\practice\practice11\practice11.vcxproj", "{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -363,6 +365,14 @@ Global
 		{12B17589-EB3D-44E1-9597-00D45C3A824C}.Release|x64.Build.0 = Release|x64
 		{12B17589-EB3D-44E1-9597-00D45C3A824C}.Release|x86.ActiveCfg = Release|Win32
 		{12B17589-EB3D-44E1-9597-00D45C3A824C}.Release|x86.Build.0 = Release|Win32
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Debug|x64.ActiveCfg = Debug|x64
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Debug|x64.Build.0 = Debug|x64
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Debug|x86.ActiveCfg = Debug|Win32
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Debug|x86.Build.0 = Debug|Win32
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Release|x64.ActiveCfg = Release|x64
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Release|x64.Build.0 = Release|x64
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Release|x86.ActiveCfg = Release|Win32
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -402,6 +412,7 @@ Global
 		{26CDA196-7E13-4F34-A6A8-D5BA0279F779} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B6D7EC07-176B-42E6-B3EC-1E9FD29D16EA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{12B17589-EB3D-44E1-9597-00D45C3A824C} = {7A075D68-EBBA-4AF9-A4E3-AA59B84BA7AF}
+		{06E07FA8-E6A2-4BA9-AC05-4BEA92294BFE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42810A91-FC8D-4A4B-915D-C8F04472FDA2}
