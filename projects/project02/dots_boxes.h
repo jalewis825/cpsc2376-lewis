@@ -1,4 +1,3 @@
-//AI: Used for a few organization helpers but mainly just reconfigured my code from previous project to be object oriented
 #pragma once
 
 #include <iostream>
