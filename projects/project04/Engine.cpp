@@ -1,10 +1,13 @@
+//AI: I wanted to add a few extra sounds and so I had AI help me add them into the engine so I could use them
+
 #include "Engine.h"
 #include <iostream>
 #include <stdexcept>
+#include <direct.h>
 
 Engine::Engine(const std::string& title, int width, int height,
-    const std::string& fontPath, int fontSize, const std::string& soundPath)
-    : window(nullptr), renderer(nullptr), font(nullptr), sound(nullptr)
+    const std::string& fontPath, int fontSize, const std::string& soundPath, const std::string& boxCompleteSoundPath, const std::string& victorySoundPath)
+    : window(nullptr), renderer(nullptr), font(nullptr), sound(nullptr), boxCompleteSound(nullptr), victorySound(nullptr)
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         std::cerr << "SDL could not initialize! SDL_Error: "
@@ -68,6 +71,16 @@ Engine::Engine(const std::string& title, int width, int height,
             << Mix_GetError() << std::endl;
         // Do not throw, continue without sound.
     }
+
+    boxCompleteSound = Mix_LoadWAV(boxCompleteSoundPath.c_str());
+    if (!boxCompleteSound) {
+        std::cerr << "Failed to load box complete sound! Mix_Error: " << Mix_GetError() << std::endl;
+    }
+
+    victorySound = Mix_LoadWAV(victorySoundPath.c_str());
+    if (!victorySound) {
+        std::cerr << "Failed to load tada.wav: " << Mix_GetError() << std::endl;
+    }
 }
 
 
@@ -87,12 +100,32 @@ Engine::~Engine()
     SDL_Quit();
 }
 
+void Engine::playVictorySound() {
+    if (victorySound) {
+        Mix_PlayChannel(-1, victorySound, 0);
+    }
+}
 
-void Engine::drawCircle(int centerX, int centerY, int radius,
-    SDL_Color color)
-{
-    filledCircleRGBA(renderer, centerX, centerY, radius, color.r, color.g, color.b, color.a);
-    aacircleRGBA(renderer, centerX, centerY, radius, color.r, color.g, color.b, color.a);
+void Engine::playBoxCompleteSound() {
+    if (boxCompleteSound) {
+        Mix_PlayChannel(-1, boxCompleteSound, 0); // Play the box complete sound
+    }
+    else {
+        std::cerr << "Box complete sound not loaded!" << std::endl;
+    }
+}
+void Engine::drawCircle(int centerX, int centerY, int radius, SDL_Color color) {
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+    for (int w = 0; w < radius * 2; w++) {
+        for (int h = 0; h < radius * 2; h++) {
+            int dx = radius - w; // horizontal offset
+            int dy = radius - h; // vertical offset
+            if ((dx * dx + dy * dy) <= (radius * radius)) {
+                SDL_RenderDrawPoint(renderer, centerX + dx, centerY + dy);
+            }
+        }
+    }
 }
 
 void Engine::drawRectangle(int centerX, int centerY, int rectWidth, int rectHeight,

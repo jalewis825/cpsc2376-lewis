@@ -4,6 +4,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_main.h>
 #include <string>
 
 class Engine {
@@ -14,7 +15,9 @@ public:
         int height = 700,
         const std::string& fontPath = "Ubuntu-Bold.ttf",
         int fontSize = 24,
-        const std::string& soundPath = "move.wav");  // Path to sound file
+        const std::string& soundPath = "move.wav",
+        const std::string& boxCompleteSoundPath = "ding.wav",
+        const std::string& victorySoundPath = "tada.wav");
 
     // Destructor: Cleans up resources.
     ~Engine();
@@ -35,10 +38,14 @@ public:
 
     // Play loaded sound
     void playSound();
+    void playBoxCompleteSound();
+    void playVictorySound();
 
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     TTF_Font* font;
     Mix_Chunk* sound;
+    Mix_Chunk* boxCompleteSound;
+    Mix_Chunk* victorySound;
 };
