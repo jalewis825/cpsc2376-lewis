@@ -1,20 +1,51 @@
-// question03.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*Book Catalog Analyzer
+Your Task:
+
+Write a templated function countMatching that accepts a std::vector<T> and a lambda.
+In main(), create a std::vector<std::string> with book titles.
+Use countMatching to count how many titles contain the word "history".
+
+AI: Used to look up the templated function syntax. Used to generate book title list. Used it to help me search the list regardless of case or 's
+*/
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+template <typename T>
+int countMatching(const std::vector<T>& vec, bool(*condition)(const T&)) {
+    int count = 0;
+    for (const auto& element : vec) {
+        if (condition(element)) {
+            ++count;
+        }
+    }
+    return count;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+bool containsHistory(const std::string& title) {
+    std::string lowerTitle = title;
+    std::transform(lowerTitle.begin(), lowerTitle.end(), lowerTitle.begin(), 
+        [](unsigned char c) {return std::tolower(c);});
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    return lowerTitle.find("history") != std::string::npos;
+}
+int main()
+{
+    std::vector<std::string> bookTitles = {
+        "The Silent Garden",
+        "History's Echo",
+        "Whispers of the Past",
+        "A Journey Through Time",
+        "The History of Forgotten Dreams",
+        "Shadows of the Empire",
+        "History in the Blood",
+        "Hogwarts: A History"
+    };
+
+    int count = countMatching(bookTitles, containsHistory);
+
+    std::cout << "Number of books titles containing 'history': " << count << std::endl;
+
+    return 0;
+}
