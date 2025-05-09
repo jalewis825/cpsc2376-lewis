@@ -10,7 +10,7 @@ Create a Robot class with a name, 100 hit points, and either a smart pointer to 
 Simulate a 1v1 duel that runs until one or both robots end up with 0 hit points.
 
 AI: used to help me with the random syntax and to give me some robot names. Used it to try and figure out why hp wasn't doing right for beta but ran out of time.
-I found the error after I ran out of time...it was in line 41....*face palm** I wrote beta.attack() instead of beta.getHP()
+I found the error after I ran out of time...it was in line 42....*face palm** I wrote beta.attack() instead of beta.getHP() on the exam.
 */
 
 #include <iostream>
