@@ -1,4 +1,4 @@
-//AI: Used to give me a file structure to give me an idea where to start.
+//AI: Used to give me a file structure to give me an idea where to start. Also, I used it to help me clean up my output with my error messages.
 
 #include "shape.h"
 #include "shape_factory.h"
