@@ -1,24 +1,42 @@
-// practice14_02.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//AI: Used to give me a file structure to give me an idea where to start.
 
+#include "shape.h"
+#include "shape_factory.h"
 #include <iostream>
 #include <fstream>
-#include <sstream>
+#include <vector>
+#include <string>
 
 
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::ifstream infile("shapes.txt");
+    if (!infile) {
+        std::cerr << "Failed to open shapes.txt" << std::endl;
+        return 1;
+    }
+
+    std::vector<std::unique_ptr<Shape>> shapes;
+    std::string line;
+    int lineNumber = 1;
+
+    while (std::getline(infile, line)) {
+        try {
+            shapes.push_back(createShape(line, lineNumber));
+        }
+        catch (const std::exception& e) {
+            std::cerr << "Skipping line: " << e.what() << std::endl;
+        }
+        ++lineNumber;
+    }
+
+    double totalArea = 0.0;
+        for (const auto& shape : shapes) {
+            totalArea += shape->area();
+        }
+
+        std::cout << "Total area of all valid shapes: " << totalArea << std::endl;
+
+        return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

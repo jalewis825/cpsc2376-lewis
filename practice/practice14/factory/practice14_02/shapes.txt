@@ -1,4 +1,7 @@
-circle 5
+Circle 5
 square 4
+treeangle 4 8
 rectangle 3 6
 triangle 5 2
+rectangle 4
+circle 2.5
